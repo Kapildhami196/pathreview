@@ -1,0 +1,57 @@
+...F.F.....................                                              [100%]
+=================================== FAILURES ===================================
+_________________ TestTechDetector.test_node_modules_excluded __________________
+
+self = <tests.unit.test_tech_detector.TestTechDetector object at 0x10c36ec40>
+detector = <agent.tools.tech_detector.TechDetector object at 0x10c36e9e0>
+
+    def test_node_modules_excluded(self, detector):
+        """Test node_modules/ directory is excluded from counts."""
+        files = [
+            "src/main.py",
+            "node_modules/package1/index.js",
+            "node_modules/package2/lib.js",
+            "utils.py",
+        ]
+    
+        result = detector.execute({"files": files})
+    
+        data = result.data
+>       assert data["primary_language"] == "Python"
+E       AssertionError: assert 'JavaScript' == 'Python'
+E         
+E         - Python
+E         + JavaScript
+
+tests/unit/test_tech_detector.py:78: AssertionError
+----------------------------- Captured stdout call -----------------------------
+2026-07-22 01:14:29 [info     ] tech_detected                  frameworks_count=0 languages_count=2 primary_lang=JavaScript
+________________ TestTechDetector.test_build_directory_excluded ________________
+
+self = <tests.unit.test_tech_detector.TestTechDetector object at 0x10c3e1d00>
+detector = <agent.tools.tech_detector.TechDetector object at 0x10c418a70>
+
+    def test_build_directory_excluded(self, detector):
+        """Test build directory is excluded."""
+        files = [
+            "src/main.py",
+            "build/generated.js",
+            "build/bundle.js",
+        ]
+    
+        result = detector.execute({"files": files})
+    
+        data = result.data
+>       assert data["primary_language"] == "Python"
+E       AssertionError: assert 'JavaScript' == 'Python'
+E         
+E         - Python
+E         + JavaScript
+
+tests/unit/test_tech_detector.py:105: AssertionError
+----------------------------- Captured stdout call -----------------------------
+2026-07-22 01:14:29 [info     ] tech_detected                  frameworks_count=0 languages_count=2 primary_lang=JavaScript
+=========================== short test summary info ============================
+FAILED tests/unit/test_tech_detector.py::TestTechDetector::test_node_modules_excluded
+FAILED tests/unit/test_tech_detector.py::TestTechDetector::test_build_directory_excluded
+2 failed, 25 passed in 0.26s
