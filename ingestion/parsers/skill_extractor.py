@@ -283,30 +283,6 @@ class SkillExtractor:
         """Detect tools and DevOps technologies."""
         text_lower = text.lower()
 
-        docker_evidence = []
-        if re.search(r"^\s*FROM\s+\S+", text, re.MULTILINE | re.IGNORECASE):
-            docker_evidence.append("Dockerfile FROM instruction")
-        if re.search(
-            r"^\s*(RUN|CMD|ENTRYPOINT|EXPOSE|COPY|ADD|WORKDIR)\b",
-            text,
-            re.MULTILINE | re.IGNORECASE,
-        ):
-            docker_evidence.append("Dockerfile instruction")
-        if re.search(r"^\s*services\s*:\s*$", text, re.MULTILINE | re.IGNORECASE) and re.search(
-            r"^\s+(build|image|ports|volumes|networks)\s*:",
-            text,
-            re.MULTILINE | re.IGNORECASE,
-        ):
-            docker_evidence.append("Docker Compose service definition")
-
-        if docker_evidence:
-            skills_dict["Docker"] = SkillDetection(
-                name="Docker",
-                category="Tool",
-                confidence=min(0.95, 0.75 + len(docker_evidence) * 0.1),
-                evidence=docker_evidence,
-            )
-
         for tool, confidence in self.TOOLS.items():
             if tool in text_lower:
                 display_name = tool.upper() if tool in ["ci/cd"] else tool.title()
