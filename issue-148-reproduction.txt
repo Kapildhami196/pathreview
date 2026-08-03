@@ -15,13 +15,13 @@ extractor = <ingestion.parsers.skill_extractor.SkillExtractor object at 0x1097f5
             id: string;
             name: string;
         }
-    
+
         export class UserService {
             async getUser(id: string): Promise<User> {}
         }
         """
         result = extractor.extract_skills(text)
-    
+
         skill_names = [s.name for s in result]
         # Should detect TypeScript
 >       assert any("typescript" in s.lower() for s in skill_names)
@@ -42,7 +42,7 @@ extractor = <ingestion.parsers.skill_extractor.SkillExtractor object at 0x1097bd
         console.log(data);
         """
         result = extractor.extract_skills(text)
-    
+
         skill_names = [s.name for s in result]
 >       assert any("javascript" in s.lower() or "js" in s.lower() for s in skill_names)
 E       assert False

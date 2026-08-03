@@ -2,15 +2,15 @@
 
 ## Week 7 — Issue Selection
 
-**Issue link:**  
+**Issue link:**
 https://github.com/ascherj/pathreview/issues/148
 
-**Issue title:**  
+**Issue title:**
 Skill extractor fails to detect JavaScript and TypeScript
 
-**Tier:**  
-☑ Tier 1  
-☐ Tier 2  
+**Tier:**
+☑ Tier 1
+☐ Tier 2
 ☐ Tier 3
 
 ### Problem summary
@@ -37,13 +37,13 @@ I selected this Tier 1 issue because it has a clearly defined scope and primaril
 
 **Patterns to follow:** Preserve canonical skill-name keys, evidence lists, bounded confidence scores, type hints, Google-style docstrings, and the existing pytest fixture and assertion style.
 
-**Branch name:**  
+**Branch name:**
 fix/148-detect-javascript-typescript
 
-**Setup confirmation:**  
+**Setup confirmation:**
 ☑ App runs locally at localhost:5173
 
-**Cohort ledger:**  
+**Cohort ledger:**
 ☑ Issue added to cohort ledger
 
 ## Week 8 — Reproduction and Solution Planning
