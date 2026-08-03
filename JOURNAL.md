@@ -57,3 +57,29 @@ fix/148-detect-javascript-typescript
 **Walkthrough video (recommended):** Not recorded.
 
 **Blockers or open questions:** The focused JavaScript and TypeScript tests pass. The complete skill-extractor test module also exposes a PostgreSQL-related test error in which `skill_names` is referenced before assignment. I documented it separately because it does not occur in the focused Issue #148 tests and was not modified as part of this change.
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+
+I completed the JavaScript and TypeScript detection changes from `PLAN.md`.
+`SkillExtractor._detect_languages()` now detects JavaScript from `.js` and
+`.jsx` filenames, `require(...)`, ES module imports, and variable declarations.
+It also detects TypeScript from `.ts` and `.tsx` filenames, structured
+declarations, and primitive type annotations. I added focused regression
+coverage for JavaScript `require(...)` detection without filename evidence.
+
+**Next steps:**
+
+Open the pull request against the upstream `pathreview` repository, complete
+every section of the PR template, request draft feedback, and add the final PR
+link and validation summary to Check-in 2.
+
+**Blockers:**
+
+The repository baseline has pre-existing validation failures. On `origin/main`,
+`make check` reported 182 lint errors and `make test-unit` reported 53 failures.
+On this branch, those totals did not increase, and the focused Issue #148 tests
+pass.
